@@ -25,3 +25,12 @@ class TestLoginPage:
         assert "inventory.html" in self.driver.current_url
         assert "Products" in self.home_page.get_text_title_home_page_get()
         print(self.home_page.get_text_title_home_page_get())
+
+    def test_failed_login(self):
+        self.login_page.login("wrong_user", "secret_sauce")
+        assert "Epic sadface: Username and password do not match any user in this service" in self.login_page.get_pop_up_modal_text()
+        print(self.login_page.get_pop_up_modal_text())
+
+    def add_to_cart_items(self):
+        self.home_page.click_add_to_cart_backpack()
+        self.home_page.click_add_to_cart_bolt_tshirt()
